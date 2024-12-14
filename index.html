@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauge Radial Progress Bar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .map-marker {
+            background: white;
+            border-radius: 50%;
+            width: 125px;
+            height: 125px;
+            position: relative;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .map-marker::after {
+            content: '';
+            position: absolute;
+            bottom: -31px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 35px solid white;
+        }
+
+        .map-marker::before {
+            content: '';
+            position: absolute;
+            bottom: -49px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        svg {
+            width: 100%;
+            height: 150px;
+            display: block;
+            transform: translate(-0px, -33px);
+        }
+
+        path {
+            stroke-linecap: round;
+            stroke-width: 10;
+        }
+
+        path.grey {
+            stroke: url(#gradient);
+            stroke-dasharray: 250;
+            stroke-dashoffset: 0; 
+        }
+
+        /*path.purple {
+            stroke: url(#gradient);
+            stroke-dasharray: 250;
+            stroke-dashoffset: 250;
+            animation: dash 3s .5s cubic-bezier(.7,0,.3,1) forwards;
+        }*/
+
+        path.white {
+            stroke: #ffffff;
+            stroke-dasharray: 0px, 250px; 
+            stroke-dashoffset: 64; 
+            stroke-width: 8.5px;
+            transform: translate(-5px, 5px);
+        }
+
+        path.marker {
+            stroke: #ffffff;
+            stroke-width: 6; 
+            
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 100; 
+            }
+        }
+
+        .text-center {
+            font-size: 32px;
+            font-weight: bold;
+            text-anchor: middle;
+            fill: #333333;
+            transform: translate(0px, 15px);
+        }
+
+        .text-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .text-label-rt{
+            transform: translate(9px, 7px);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .text-label-lt{
+            transform: translate(-27px, 7px);
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-marker">
+        <svg viewBox="0 0 100 100">
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#085470" /> 
+            <stop offset="50%" stop-color="#43a047" /> 
+            <stop offset="100%" stop-color="#ffab00" /> 
+        </linearGradient>
+
+        
+          <path class="grey" d="M20,90 A40,40 0 1,1 80,90" fill='none' />
+
+     
+
+        
+          <path id="white" fill='none' class="white" d="M30,90 A40,40 0 1,1 80,90" />
+
+  
+          <text x="50" y="55" class="text-center">64</text>
+
+
+          <text x="15" y="95" class="text-label-rt" fill="#085470">42</text>
+          <text x="85" y="95" class="text-label-lt" fill="#ffab00">65</text>
+      </svg>
+    </div>
+</body>
+
+</html>
